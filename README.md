@@ -6,7 +6,7 @@ Static marketing site for Lynx HMS Web. No build step.
 - index.html — the whole site (HTML, CSS, JS)
 - assets/logo-mark.png — lion logo mark (cropped from the flier)
 - assets/favicon.png — browser tab icon
-- CNAME, .nojekyll — GitHub Pages settings
+- .nojekyll — GitHub Pages setting (serve files as-is)
 - assets/screens/*.webp — product screenshots from the demo property (hotel name shown as "Lynx Demo Hotel")
 
 ## Before going live
@@ -18,6 +18,9 @@ Edit the CONFIG block near the bottom of index.html:
 Pricing figures are in the #pricing section (data-m = monthly, data-y = yearly).
 
 ## Hosting (GitHub Pages)
-- CNAME — tells GitHub Pages to serve the site on www.lynxpaq.com
-- .nojekyll — serve files as-is, no Jekyll processing
+Live at https://lynxpaq.github.io/lynxpaq-website/
 Every push to master redeploys the site automatically.
+
+When lynxpaq.com is registered: add a file named CNAME containing
+www.lynxpaq.com, push it, set the DNS records, then tick Enforce HTTPS
+under Settings > Pages.
