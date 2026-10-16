@@ -11,9 +11,10 @@ Static marketing site for Lynx HMS Web. No build step.
 
 ## Before going live
 Edit the CONFIG block near the bottom of index.html:
-- whatsapp: number for all WhatsApp buttons (international format, no +)
-- demoEndpoint: URL that accepts demo requests as JSON POST.
-  Leave empty and the form opens WhatsApp with the request pre-filled.
+- formspree: your Formspree form endpoint, e.g. https://formspree.io/f/xyzabcde
+  Every demo request is emailed to the address on your Formspree account
+  and kept in the Formspree dashboard (Submissions tab).
+- whatsapp: number for the WhatsApp chat buttons (international format, no +)
 
 Pricing figures are in the #pricing section (data-m = monthly, data-y = yearly).
 
