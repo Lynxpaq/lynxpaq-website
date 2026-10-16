@@ -275,7 +275,14 @@ fieldset{border:0;margin:0;padding:0}
 .chip input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
 .form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between}
 .form-foot small{color:var(--muted);font-size:13px;max-width:40ch}
-.done{grid-column:1/-1;display:grid;gap:14px;padding:8px 0}
+.done{grid-column:1/-1;display:grid;gap:14px;padding:8px 0;position:relative;align-content:start;justify-items:start}
+form.card.sent{align-content:start;align-self:start}
+.done h3{padding-right:48px}
+form.card.sent>:not(.done){display:none}
+.x{position:absolute;top:0;right:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.x:hover{background:var(--sunken)}
+.x svg{width:18px;height:18px}
+.done .btn{width:max-content}
 .form-alert{grid-column:1/-1;border:1.5px solid var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent);color:var(--ink);border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.5}
 .form-alert b{color:var(--bad)}
 .hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -861,11 +868,21 @@ const CONFIG = {
     return p;
   }
   function showDone(d,ref){
-    form.innerHTML='';
     const box=document.createElement('div');box.className='done';box.setAttribute('role','status');box.tabIndex=-1;
-    box.innerHTML='<h3>Request received</h3><p>Thank you, '+esc(d.name)+'. We will contact you on '+esc(d.phone)+' within one working day to confirm your demo for '+esc(d.hotel)+'.</p><span class="ref">Reference: '+ref+'</span><p>Quote this reference if you call or message us.</p>';
-    form.appendChild(box);box.focus();
+    box.innerHTML='<button type="button" class="x" aria-label="Close confirmation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>'
+      +'<h3>Request received</h3><p>Thank you, '+esc(d.name)+'. We will contact you on '+esc(d.phone)+' within one working day to confirm your demo for '+esc(d.hotel)+'.</p><span class="ref">Reference: '+ref+'</span><p>Quote this reference if you call or message us.</p>'
+      +'<button type="button" class="btn btn-ghost js-close">Close</button>';
+    form.classList.add('sent');form.appendChild(box);box.focus();
+    box.querySelectorAll('.x,.js-close').forEach(b=>b.addEventListener('click',closeDone));
+    box.addEventListener('keydown',e=>{if(e.key==='Escape')closeDone()});
     try{localStorage.removeItem('lynx-demo-draft')}catch(e){}
+  }
+  function closeDone(){
+    const box=form.querySelector('.done'); if(box)box.remove();
+    form.reset();form.classList.remove('sent');
+    const btn=document.getElementById('submitBtn');btn.disabled=false;btn.textContent='Request my demo';
+    document.getElementById('f-name').focus({preventScroll:true});
+    document.getElementById('demo').scrollIntoView({block:'start',behavior:'smooth'});
   }
   function showError(msg){
     const a=document.getElementById('formAlert');
