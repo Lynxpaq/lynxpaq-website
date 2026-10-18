@@ -6,7 +6,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <meta property="og:title" content="Lynx HMS Web by Lynxpaq Technologies">
 <meta property="og:description" content="Complete hotel management, all in one platform. Book a demo.">
-<meta property="og:image" content="assets/screens/dashboard.webp">
+<meta property="og:image" content="assets/video/tour-poster.webp">
 <title>Lynx HMS Web</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Lynx HMS Web by Lynxpaq Technologies: cloud hotel management for Nigerian hotels. Front office, OTA channels, housekeeping, bar & POS, stock, finance and offline operation in one platform. Book a demo.">
@@ -106,6 +106,12 @@ a{color:inherit}
 .cap{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.45}
 .hero .cap{color:var(--on-navy-muted)}
 .hero-shot{min-width:0}
+.vid{position:relative;background:#070b18;aspect-ratio:16/9;max-width:100%}
+.vid video{display:block;width:100%;height:100%;object-fit:contain;background:#070b18}
+.play{position:absolute;inset:auto auto 50% 50%;transform:translate(-50%,50%);display:inline-flex;align-items:center;gap:10px;padding:12px 20px 12px 14px;border:0;border-radius:999px;background:var(--gold);color:var(--on-gold);font:700 15px var(--f-body);cursor:pointer;box-shadow:0 10px 30px -6px rgba(0,0,0,.6)}
+.play svg{width:26px;height:26px}
+.play:hover{background:var(--gold-hi)}
+.vid.playing .play{display:none}
 .tabgroups{display:flex;flex-wrap:wrap;gap:14px 28px;margin-bottom:26px}
 .tg{display:grid;gap:8px;align-content:start}
 .tg>span{font:600 11px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -372,10 +378,16 @@ footer em{font-family:var(--f-display);font-style:italic;color:var(--on-navy);fo
 
     <figure class="hero-shot" style="margin:0">
       <div class="frame">
-        <div class="bar"><i></i><i></i><i></i><em>Lynx HMS · Dashboard</em></div>
-        <button class="zoom" type="button" data-full="assets/screens/dashboard.webp"><img src="assets/screens/dashboard.webp" width="1600" height="900" alt="Lynx HMS dashboard: 23 guests checked in, 71.9% occupancy, revenue today, month-to-date revenue, RevPAR and a revenue trend chart"></button>
+        <div class="bar"><i></i><i></i><i></i><em>Lynx HMS Web · Product tour · 2:30</em></div>
+        <div class="vid">
+          <video id="tour" controls playsinline preload="metadata" poster="assets/video/tour-poster.webp" width="1280" height="720">
+            <source src="assets/video/lynx-hms-tour.mp4" type="video/mp4">
+            Your browser cannot play this video. <a href="assets/video/lynx-hms-tour.mp4">Open the tour video</a>.
+          </video>
+          <button type="button" class="play" id="tourPlay" aria-label="Play the 2 minute 30 second product tour"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>Watch the tour</span></button>
+        </div>
       </div>
-      <figcaption class="cap">The live dashboard on a 32-room demonstration property: occupancy, revenue and RevPAR from the ledger, without asking anyone for a report.</figcaption>
+      <figcaption class="cap">A 2½-minute tour of the working product: front desk, bar, stock, night audit, booking portal and offline mode. No sound.</figcaption>
     </figure>
   </div>
 </section>
@@ -793,6 +805,14 @@ const CONFIG = {
   const tabs=[...document.querySelectorAll('.tab')];
   function sel(t){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on})}
   tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{let j=null;if(e.key==='ArrowRight')j=(i+1)%tabs.length;if(e.key==='ArrowLeft')j=(i-1+tabs.length)%tabs.length;if(j!==null){e.preventDefault();sel(tabs[j]);tabs[j].focus()}})});
+
+  // Tour video
+  const tour=document.getElementById('tour'), tp=document.getElementById('tourPlay');
+  if(tour&&tp){
+    tp.addEventListener('click',()=>{const p=tour.play();if(p&&p.catch)p.catch(()=>{})});
+    tour.addEventListener('play',()=>tour.parentElement.classList.add('playing'));
+    tour.addEventListener('ended',()=>tour.parentElement.classList.remove('playing'));
+  }
 
   // Lightbox
   document.addEventListener('click',e=>{
