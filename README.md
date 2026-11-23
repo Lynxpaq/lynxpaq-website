@@ -26,8 +26,9 @@ Edit the CONFIG block at the top of assets/site.js:
   "Lynx HMS demo request: …" or "Lynx E-commerce demo request: …".
 - whatsapp: number for the WhatsApp chat buttons (international format, no +)
 
-HMS pricing figures are in the #pricing section of index.html
-(data-m = monthly, data-y = yearly).
+HMS pricing is in the #pricing section of index.html: three packages,
+Standard (₦45,000), Professional (₦95,000) and Enterprise for hotel groups
+(₦135,000), each per month.
 
 ## Hosting (GitHub Pages)
 Live at https://lynxpaq.github.io/lynxpaq-website/
