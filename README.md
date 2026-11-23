@@ -28,7 +28,8 @@ Edit the CONFIG block at the top of assets/site.js:
 
 HMS pricing is in the #pricing section of index.html: three packages,
 Standard (₦45,000), Professional (₦95,000) and Enterprise for hotel groups
-(₦135,000 per hotel group), each per month.
+(₦135,000 per hotel group), each per month, with a one-month free trial on
+every package. Setup, data migration and training from ₦250,000 (one-time).
 
 ## Hosting (GitHub Pages)
 Live at https://lynxpaq.github.io/lynxpaq-website/

@@ -415,3 +415,6 @@ footer .prods a:hover{text-decoration:underline}
 .plan.best .pos{color:var(--on-navy-muted)}
 .plan h3{text-wrap:balance}
 .plan{position:relative}
+.trial{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:-16px 0 32px;padding:12px 16px 12px 12px;border-radius:14px;background:var(--gold-soft);border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);width:max-content;max-width:100%}
+.trial b{background:var(--gold);color:var(--on-gold);border-radius:999px;padding:6px 12px;font:700 14px var(--f-body);white-space:nowrap}
+.trial span{color:var(--ink);font-size:15.5px;min-width:0}
