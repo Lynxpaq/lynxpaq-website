@@ -12,7 +12,8 @@ Visitors switch between them with the "Products" button in the header
 - assets/site.css — styles for both pages
 - assets/site.js  — menus, screenshots, video and the demo forms for both pages
 - assets/lynxpaq-logo.png — Lynxpaq logo (transparent background), used in header and footer
-- assets/lynxpaq-favicon.png, assets/lynxpaq-touch-icon.png — browser tab and phone home-screen icons
+- assets/lynxpaq-tab-icon.png, assets/lynxpaq-tab-icon-32.png — browser tab icon (transparent background)
+- assets/lynxpaq-touch-icon.png — phone home-screen icon (navy background)
 - assets/lynxpaq-og.png — image shown when the e-commerce page link is shared
   (When replacing an image, give it a new file name so browsers don't keep showing the old one.)
 - assets/screens/*.webp — Lynx HMS screenshots (demo property shown as "Lynx Demo Hotel")
